@@ -1,0 +1,1 @@
+注册中心集群启动脚本，jar包来源来silvercloud-eureka-7001项目编译的包

@@ -5,3 +5,4 @@ tpid/
 logs
 src/test
 config.json
+/.project
