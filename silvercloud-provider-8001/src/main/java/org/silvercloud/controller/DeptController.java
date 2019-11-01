@@ -31,45 +31,40 @@ public class DeptController {
         return service.add(dept);
     }
 
-
-
     @RequestMapping(value = "/dept/get/{id}", method = RequestMethod.GET)
     @HystrixCommand(fallbackMethod = "hystrix_get")
     public Dept get(@PathVariable("id") Long id) {
         Dept dept = service.get(id);
         if (null == dept) {
-            throw new RuntimeException("该 ID:"+id+" 不存在");
+            throw new RuntimeException("该 ID:" + id + " 不存在");
         }
 
         return dept;
     }
 
-    public Dept hystrix_get(@PathVariable("id") Long id){
-        return  new Dept().setDeptno(id).setDeptname("该部门不存在").setDb_source("no data");
+    public Dept hystrix_get(@PathVariable("id") Long id) {
+        return new Dept().setDeptno(id).setDeptname("该部门不存在").setDb_source("no data");
     }
-
-
 
     @RequestMapping(value = "/dept/list", method = RequestMethod.GET)
     public List<Dept> list() {
         return service.list();
     }
 
-
     /**
      * 使用spring cloud 的服务发现功能来从eureka中获得相关信息作为扩展使用。
+     * 
      * @return
      */
     @RequestMapping(value = "/dept/discovery", method = RequestMethod.GET)
-    public Object discovery()
-    {
+    public Object discovery() {
         List<String> list = discoveryClient.getServices();
         System.out.println("**********" + list);
 
         List<ServiceInstance> srvList = discoveryClient.getInstances("SILVERCLOUD-DEPT");
         for (ServiceInstance element : srvList) {
-            System.out.println(element.getServiceId() + "\t" + element.getHost() + "\t" + element.getPort() + "\t"
-                    + element.getUri());
+            System.out.println(
+                element.getServiceId() + "\t" + element.getHost() + "\t" + element.getPort() + "\t" + element.getUri());
         }
         return this.discoveryClient;
     }

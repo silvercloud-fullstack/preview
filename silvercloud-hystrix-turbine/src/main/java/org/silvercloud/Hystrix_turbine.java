@@ -16,6 +16,6 @@ import org.springframework.cloud.netflix.turbine.EnableTurbine;
 public class Hystrix_turbine {
 
     public static void main(String[] args) {
-        SpringApplication.run(Hystrix_turbine.class,args);
+        SpringApplication.run(Hystrix_turbine.class, args);
     }
 }

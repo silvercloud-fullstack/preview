@@ -16,26 +16,22 @@ import java.util.List;
  * @date 2019/9/25下午4:54
  */
 @Service
-public class DeptServiceImpl implements DeptService
-{
+public class DeptServiceImpl implements DeptService {
     @Autowired
     private DeptDao dao;
 
     @Override
-    public boolean add(Dept dept)
-    {
+    public boolean add(Dept dept) {
         return dao.addDept(dept);
     }
 
     @Override
-    public Dept get(Long id)
-    {
+    public Dept get(Long id) {
         return dao.findById(id);
     }
 
     @Override
-    public List<Dept> list()
-    {
+    public List<Dept> list() {
         return dao.findAll();
     }
 

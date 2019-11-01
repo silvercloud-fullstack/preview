@@ -11,8 +11,7 @@ import java.util.List;
  * @Description: TODO
  * @date 2019/9/25下午4:54
  */
-public interface DeptService
-{
+public interface DeptService {
     public boolean add(Dept dept);
 
     public Dept get(Long id);
