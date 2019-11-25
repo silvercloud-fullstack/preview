@@ -4,12 +4,15 @@ server:
 eureka:
   instance:
     #改单机运行需改hosts文件
-    #127.0.0.1 eureka7003.com
-    hostname: localhost
+    hostname: eureka7003.com
   client:
     register-with-eureka: false  #不注册自己
-    fetch-registry: false #自己是注册中心，负责维护实例，不检索
+    fetch-registry: false        #自己是注册中心，负责维护实例，不检索
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
-#      单机
-#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+spring:
+  cloud:
+    inetutils:
+      preferredNetworks:
+        - 192.168.2.

@@ -1,5 +1,5 @@
-@echo off
-set jdk_home="D:\Program Files\Java\jdk1.8.0_74\bin\java.exe"
+﻿@echo off
+set jdk_home="F:\Program Files\Java\jdk1.8.0_74\bin\java.exe"
 set jar_path=silvercloud-eureka-7001-1.0-SNAPSHOT.jar
 
 call:startNode 7001

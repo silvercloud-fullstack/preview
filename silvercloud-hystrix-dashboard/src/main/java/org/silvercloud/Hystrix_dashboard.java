@@ -15,7 +15,7 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 @EnableHystrixDashboard
 public class Hystrix_dashboard {
 
-    public static void main(String[] args) {
-        SpringApplication.run(Hystrix_dashboard.class,args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(Hystrix_dashboard.class, args);
+	}
 }
