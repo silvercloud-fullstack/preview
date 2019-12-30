@@ -12,9 +12,9 @@ spring:
     name: silvercloud-dept
   datasource:
     driver-class-name : com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.47.51:3306/cloudDB01?characterEncoding=utf8&autoReconnect=true&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/cloudDB01?characterEncoding=utf8&autoReconnect=true&useSSL=false
     username: root
-    password: root
+    password: 123456
     # using Hikari
     hikari:
       autoCommit : true
@@ -37,6 +37,9 @@ spring:
         cacheServerConfiguration: true
         elideSetAutoCommits: true
         maintainTimeStats: false
+  cloud:
+    inetutils:
+      preferred-networks: 192.168.2.   #多网卡选择
 
 eureka:
   client: #客户端注册进eureka服务列表内
@@ -44,9 +47,19 @@ eureka:
 #      defaultZone: http://localhost:7001/eureka
       defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
   instance:
-    instance-id: silvercloud-dept8001
-    prefer-ip-address: true     #访问路径可以显示IP地址
+    prefer-ip-address: true      #访问路径可以显示IP地址
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}  #2.0版本 变量取代了 spring.cloud.client.ipAddress
+    status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/swagger-ui.html   #swagger2文档 
 
+logging:
+  config: classpath:log4j2.xml
+  
+# 以下是 actuator监控信息的配置 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream,info,health 
 info:
   app.name: silvercloud
   company.name: org.silvercloud
@@ -54,11 +67,12 @@ info:
   build.version: $project.version$
 
 
-logging:
-  config: classpath:log4j2.xml
+# swagger密码
+#security:
+#  basic:
+#    enabled: true
+#    path: /swagger-ui.html
+#  user:
+#    name: admin
+#    password: admin
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: hystrix.stream

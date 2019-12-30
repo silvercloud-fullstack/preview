@@ -17,6 +17,9 @@
 		<module>silvercloud-hystrix-dashboard</module>
 		<module>silvercloud-hystrix-turbine</module>
 		<module>silvercloud-gateway</module>
+		<module>silvercloud-config</module>
+		<module>sivlercloud-lcn-tm</module>
+		<module>silvercloud-sleuth</module>
 	</modules>
 	<packaging>pom</packaging>
 

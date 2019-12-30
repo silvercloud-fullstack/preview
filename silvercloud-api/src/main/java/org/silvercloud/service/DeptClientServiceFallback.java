@@ -15,29 +15,29 @@ import java.util.List;
  */
 @Component
 public class DeptClientServiceFallback implements FallbackFactory<DeptClientService> {
-    @Override
-    public DeptClientService create(Throwable throwable) {
+	@Override
+	public DeptClientService create(Throwable throwable) {
 
-        return new DeptClientService() {
-            @Override
-            public Dept get(long id) {
-                return new Dept().setDeptno(id).setDeptname("该服务已降级，停止使用").setDb_source("no data");
-            }
+		return new DeptClientService() {
+			@Override
+			public Dept get(long id) {
+				return new Dept().setDeptno(id).setDeptname("该服务已降级，停止使用").setDb_source("no data");
+			}
 
-            @Override
-            public List<Dept> list() {
-                return null;
-            }
+			@Override
+			public List<Dept> list() {
+				return null;
+			}
 
-            @Override
-            public boolean add(Dept dept) {
-                return false;
-            }
+			@Override
+			public boolean add(Dept dept) {
+				return false;
+			}
 
-            @Override
-            public Object discovery() {
-                return null;
-            }
-        };
-    }
+			@Override
+			public Object discovery() {
+				return null;
+			}
+		};
+	}
 }

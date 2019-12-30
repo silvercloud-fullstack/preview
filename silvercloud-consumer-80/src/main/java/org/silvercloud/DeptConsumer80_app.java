@@ -17,14 +17,14 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 @SpringBootApplication(scanBasePackages = "org.silvercloud")
 @EnableEurekaClient
-@RibbonClient(name = "SILVERCLOUD-DEPT",configuration = ConfigLBRule.class)
+@RibbonClient(name = "SILVERCLOUD-DEPT", configuration = ConfigLBRule.class)
 @EnableFeignClients(basePackages = "org.silvercloud")
-@EnableCircuitBreaker //熔断
+@EnableCircuitBreaker // 熔断
 public class DeptConsumer80_app {
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-        SpringApplication.run(DeptConsumer80_app.class,args);
+		SpringApplication.run(DeptConsumer80_app.class, args);
 
-    }
+	}
 }
